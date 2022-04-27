@@ -14,7 +14,7 @@ function staticLoadPlaces() {
             location: {
                 // decomment the following and add coordinates:
                 lat: 44.506761,
-                lng: 13.121940,
+                lng: 12.121940,
             },
         },
     ];
