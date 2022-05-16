@@ -1,29 +1,132 @@
-
 <!DOCTYPE html>
-<html> 
-    <head>
-        <title>AR.js Click Places Example</title>
-        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-        <script type='text/javascript' src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-        <script>
-        AFRAME.registerComponent('clicker', {
-            init: function() {
-                this.el.addEventListener('click', e => {
-                    alert('Box clicked!');
-                });
-            }
+<html>
+  <head>
+  <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
+<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+<script src="fetch-sensor-1.js"></script>
+
+<script>
+  AFRAME.registerComponent('clicker1', {
+    init: function() {
+
+      ;
+    
+
+        //const el = document.getElementById("marker1");        
+        this.el.addEventListener('click', e => { 
+          var element = document.querySelector('#entity1')
+          if (value_device > 22){
+            element.setAttribute('gltf-model', '#asset3');
+          }
+          
+            
         });
-        </script>
-    </head>
-    <body>
+    }
+});
+</script>
+
+
+
+
+   <style>
+    @import url(tablestyle.css);
+  </style> 
+</head>
+<body style="margin : 0px; overflow: hidden;">
+
+  <table class="blueTable">
+   
+    
+    <tr>
+    <td colspan="2">
+    
+    </td>
+    </tr>
+    
+    <tbody>
+    <tr>
+    <td>sid</td><td><span id="myDevice"></span></td></tr>
+    <tr>
+    <td>type</td><td><span id="myType"></span></td></tr>
+    <tr>
+    <td>name</td><td><span id="myName"></span></td></tr>
+    <tr>
+    <td>room</td><td><span id="myRoom"></span></td></tr>
+    <tr>
+    <td>time</td><td><span id="myTime"></span></td></tr>
+    <tr>
+    <td><span id="measure"></span></td><td><span id="myMeasure"></span></td></tr>
+    <tr>
+    <td><span id="measure2"></span></td><td><span id="myMeasure2"></span></td></tr>
+    <tr>
+    <td><span id="measure3"></span></td><td><span id="myMeasure3"></span></td></tr>
+    <tr>
+      <td><span id="InkLevel"></span></td><td><span id="myInkLevel"></span></td></tr>
+
+    </tbody>
+    </tr>
+    </table>
+    
     <a-scene
-        vr-mode-ui="enabled: false"
-        cursor='rayOrigin: mouse'
-        raycaster='near: 0; far: 50000'
-        arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;'
-        renderer='antialias: true; alpha: true'>
-            <a-camera gps-projected-camera='simulateLatitude: 51.049; simulateLongitude: -0.723' rotation-reader></a-camera>
-            <a-box gps-projected-entity-place='latitude: 51.0596; longitude: -0.7170' color='red' scale='200 200 200' clicker></a-box>
-    </a-scene>
-    </body>
+    arjs
+    embedded
+    renderer="logarithmicDepthBuffer: true;"
+    vr-mode-ui="enabled: false"
+    gesture-detector
+    id="scene"
+  >
+  <a-assets>
+      <a-asset-item
+        id="asset1"
+        src="https://raw.githubusercontent.com/Bbbgl/univpm_marker.github.io/main/marker-and-gesture/assets/magnemite/scene.gltf"
+      >
+      </a-asset-item>
+      <a-asset-item
+        id="asset2"
+        src="https://raw.githubusercontent.com/Bbbgl/univpm.github.io/main/assets/articuno/scene.gltf"
+      >
+      </a-asset-item>
+
+      <a-asset-item
+        id="asset3"
+        src="data:image/jpeg;base64,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"
+      >
+      </a-asset-item>
+
+    </a-assets>
+
+    <a-marker
+      preset="hiro"
+      raycaster="objects: .clickable"
+      emitevents="true"
+      cursor="fuse: false; rayOrigin: mouse;"
+      id="markerA"
+      sensor1
+    >
+      <a-entity
+        id="entity1"
+        gltf-model="#asset1"
+        position="0 0 0"
+        scale="0.05 0.05 0.05"
+        class="clickable"
+        clicker1
+      >
+      </a-entity>
+      <!-- <a-entity
+        id="entity2"
+        gltf-model="#asset2"
+        position="0 0 0"
+        scale="0.05 0.05 0.05"
+        class="clickable"
+        clicker1
+      >
+      </a-entity> -->
+    </a-marker>
+    <a-entity camera></a-entity>
+  </a-scene>
+</body>
+    
+
+   
+
 </html>
